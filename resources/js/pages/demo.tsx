@@ -8,7 +8,7 @@ import Layout from "../layouts/layout";
 function Demo() {
   return (
     <div className="p-6">
-      <h1>
+      <h1 className="title">
         hello world
       </h1>
       <Hello name="Luke" />
