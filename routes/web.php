@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\PostController;
 
-Route::get('/', function () {
-    return Inertia::render('welcome');
-})->name('home');
+Route::resource('posts', PostController::class);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
@@ -13,9 +12,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::get('hello', function () {
+Route::get('demo', function () {
     sleep(2);
     return Inertia::render('demo');
+});
+
+Route::get('home', function () {
+    sleep(2);
+    return Inertia::render('home');
 });
 
 Route::get('wave', function () {

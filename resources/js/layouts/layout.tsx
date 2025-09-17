@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div>
             <header>
                 <nav>
-                    <Link className="nav-link" href="hello">hello</Link>
+                    <Link className="nav-link" href="demo">demo</Link>
                     <Link className="nav-link" href="/create">Create</Link>
                 </nav>
             </header>
