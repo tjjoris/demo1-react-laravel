@@ -7,12 +7,24 @@ import { Link } from "@inertiajs/react";
 
 
 
-function Demo() {
+function Demo({ posts }: { posts: Array<{ id: number, body: string, created_at: string, updated_at: string }> }) {
+
+  console.log(posts);
   return (
     <div>
-      <h1 className="title">
-        hello world I am cool.
-      </h1>
+      <div>
+        {posts.map(post => (
+          <div key={post.id} className="p-4 border-b">
+            <div className="text-sm text-slate-600">
+              <span>
+                Posted on:
+              </span>
+              <span>{new Date(post.created_at).toLocaleTimeString()}</span>
+            </div>
+            <p className="font-medium">{post.body}</p>
+          </div>
+        ))}
+      </div>
       <Hello name="Luke" />
 
       <Link preserveScroll href="hello" className="block title mt-[1000px]">{new Date().toLocaleTimeString()}
