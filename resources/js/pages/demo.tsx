@@ -3,24 +3,11 @@ import { join } from "path";
 import Hello from "../components/hello";
 import Layout from "../layouts/layout";
 import { Link } from "@inertiajs/react";
+//importing the types for posts and paginated posts
+import { Post } from "../types/post";
+import { PaginatedPosts } from "../types/post";
 
 
-
-type Post = {
-  id: number;
-  body: string;
-  created_at: string;
-  updated_at: string;
-}
-
-type PaginatedPosts = {
-  data: Post[];
-  current_page: number;
-  last_page: number;
-  per_page: number;
-  total: number;
-  // ...other pagination fields
-}
 function Demo({ posts }: { posts: PaginatedPosts }) {
 
   console.log(posts);
