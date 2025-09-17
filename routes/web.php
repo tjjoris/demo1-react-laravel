@@ -4,7 +4,12 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\PostController;
 
-Route::resource('posts', PostController::class);
+//home page route handled by the index method of PostController
+Route::get('/', [PostController::class, 'index']);
+
+//creates a set of RESTful routes for the posts resource handled by PostCointroller 
+//except the index method
+Route::resource('posts', PostController::class)->except('index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
