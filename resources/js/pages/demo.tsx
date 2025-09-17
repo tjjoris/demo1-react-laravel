@@ -6,14 +6,28 @@ import { Link } from "@inertiajs/react";
 
 
 
+type Post = {
+  id: number;
+  body: string;
+  created_at: string;
+  updated_at: string;
+}
 
-function Demo({ posts }: { posts: Array<{ id: number, body: string, created_at: string, updated_at: string }> }) {
+type PaginatedPosts = {
+  data: Post[];
+  current_page: number;
+  last_page: number;
+  per_page: number;
+  total: number;
+  // ...other pagination fields
+}
+function Demo({ posts }: { posts: PaginatedPosts }) {
 
   console.log(posts);
   return (
     <div>
       <div>
-        {posts.map(post => (
+        {posts.data.map(post => (
           <div key={post.id} className="p-4 border-b">
             <div className="text-sm text-slate-600">
               <span>
