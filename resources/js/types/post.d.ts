@@ -13,11 +13,19 @@ export interface Post {
     updated_at: string;
 }
 
+export interface Link {
+    url: string | null;
+    label: string;
+    page: string | null;
+    active: boolean;
+}
+
 export interface PaginatedPosts {
     data: Post[];
     current_page: number;
     last_page: number;
     per_page: number;
     total: number;
+    links: Link[];
     // ...other pagination fields
 }

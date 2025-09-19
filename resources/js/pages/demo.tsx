@@ -26,6 +26,19 @@ function Demo({ posts }: { posts: PaginatedPosts }) {
           </div>
         ))}
       </div>
+      <div>
+        {posts.links.map(link => (
+          <div>
+            {link.url ? (
+              <a href={link.url} >{link.label}</a>
+            ) : (
+              <span>{link.label}</span>
+            )
+            }
+
+          </div>
+        ))}
+      </div>
       <Hello name="Luke" />
 
       <Link preserveScroll href="hello" className="block title mt-[1000px]">{new Date().toLocaleTimeString()}
