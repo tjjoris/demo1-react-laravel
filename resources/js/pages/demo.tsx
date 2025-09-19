@@ -6,10 +6,13 @@ import { Link } from "@inertiajs/react";
 //importing the types for posts and paginated posts
 import { Post } from "../types/post";
 import { PaginatedPosts } from "../types/post";
+import { useRoute } from "../../../vendor/tightenco/ziggy"
 
 
 
 function Demo({ posts }: { posts: PaginatedPosts }) {
+
+  const route = useRoute();
 
   // console.log(posts);
   return (
@@ -26,9 +29,14 @@ function Demo({ posts }: { posts: PaginatedPosts }) {
             <p className="font-medium">{post.body}</p>
 
             <Link
-              href={`/posts/${post.id}`}
+              href={route('posts.show', { post: post.id })}
               className="text-link">Read more...
             </Link>
+
+            {/* <Link
+              href={`/posts/${post.id}`}
+              className="text-link">Read more...
+            </Link> */}
           </div>
         ))}
       </div>
