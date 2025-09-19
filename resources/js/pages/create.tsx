@@ -30,9 +30,11 @@ export default function Create() {
                         rows={10}
                         value={data.body}
                         onChange={(e) => setData('body', e.target.value)}
+                        className={errors.body && '!ring-1 ring-red-500'}
                     >
 
                     </textarea>
+                    {errors.body && <p className="error text-base">{errors.body}</p>}
                     <button className="primary-btn mt-4">
                         Create Post
                     </button>
