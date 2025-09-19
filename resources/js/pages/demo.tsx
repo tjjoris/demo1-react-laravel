@@ -28,7 +28,7 @@ function Demo({ posts }: { posts: PaginatedPosts }) {
       </div>
       <div className="py-12 px-4">
         {posts.links.map(link => (
-          <Link className="px-2"
+          <Link className={`p-1 mx-1 ${link.active ? "text-blue-500 font-bold" : ''}`}
             key={link.label}
             {...(link.url ? {
               href: link.url
