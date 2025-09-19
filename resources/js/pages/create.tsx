@@ -35,7 +35,10 @@ export default function Create() {
 
                     </textarea>
                     {errors.body && <p className="error text-base">{errors.body}</p>}
-                    <button className="primary-btn mt-4">
+                    <button
+                        className="primary-btn mt-4"
+                        disabled={processing}
+                    >
                         Create Post
                     </button>
                 </form>

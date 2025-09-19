@@ -29,6 +29,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        sleep(2);
         $request->validate([
             'body' => ['required']
         ]);
