@@ -35,7 +35,9 @@ function Demo({ posts }: { posts: PaginatedPosts }) {
                 dangerouslySetInnerHTML={{ __html: link.label }}
               />
             ) : (
-              <span>{link.label}</span>
+              <Link
+                dangerouslySetInnerHTML={{ __html: link.label }}
+              />
             )
             }
 
