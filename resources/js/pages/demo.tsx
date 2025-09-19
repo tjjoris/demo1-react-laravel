@@ -28,17 +28,19 @@ function Demo({ posts }: { posts: PaginatedPosts }) {
       </div>
       <div className="py-12 px-4">
         {posts.links.map(link => (
-          <Link className={`p-1 mx-1 ${link.active ? "text-blue-500 font-bold" : ''}`}
-            key={link.label}
-            {...(link.url ? {
-              href: link.url
-            } : {}
-            )}
-
-            dangerouslySetInnerHTML={{ __html: link.label }}
-          />
-
-
+          link.url ? (
+            <Link className={`p-1 mx-1 ${link.active ? "text-blue-500 font-bold" : ''}`}
+              key={link.label}
+              dangerouslySetInnerHTML={{ __html: link.label }}
+              href={link.url}
+            />
+          ) : (
+            <span
+              className="p-1 mx-1 text-gray-400"
+              key={link.label}
+              dangerouslySetInnerHTML={{ __html: link.label }}
+            />
+          )
         ))}
       </div>
       <Hello name="Luke" />
