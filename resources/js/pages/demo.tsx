@@ -11,7 +11,7 @@ import { PaginatedPosts } from "../types/post";
 
 function Demo({ posts }: { posts: PaginatedPosts }) {
 
-  console.log(posts);
+  // console.log(posts);
   return (
     <div>
       <div>

@@ -22,10 +22,6 @@ Route::get('demo', function () {
     return Inertia::render('demo');
 });
 
-Route::get('create', function () {
-    return Inertia::render('create');
-})->name('create');
-
 Route::get('home', function () {
     sleep(2);
     return Inertia::render('home');
