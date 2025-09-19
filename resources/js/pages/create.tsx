@@ -2,11 +2,22 @@
 import { useForm } from '@inertiajs/react';
 
 export default function Create() {
-    console.log(useForm);
+
     //create constants for the form
     const { data, setData, post, processing, errors } = useForm({
         body: "",
     })
+
+    /**
+     * function to submit form
+     */
+    function submit(e: React.FormEvent) {
+        e.preventDefault();
+        post('/posts');
+    }
+
+    console.log(errors);
+
     return (
         <>
             <h1>
@@ -14,7 +25,7 @@ export default function Create() {
             </h1>
             {data.body}
             <div className="w-1/2 mx-auto">
-                <form>
+                <form onSubmit={submit}>
                     <textarea
                         rows={10}
                         value={data.body}
