@@ -8,6 +8,7 @@ import { Post } from "../types/post";
 import { PaginatedPosts } from "../types/post";
 
 
+
 function Demo({ posts }: { posts: PaginatedPosts }) {
 
   console.log(posts);
@@ -36,7 +37,7 @@ function Demo({ posts }: { posts: PaginatedPosts }) {
             />
           ) : (
             <span
-              className="p-1 mx-1 text-gray-400"
+              className="p-1 mx-1 text-slate-400"
               key={link.label}
               dangerouslySetInnerHTML={{ __html: link.label }}
             />
