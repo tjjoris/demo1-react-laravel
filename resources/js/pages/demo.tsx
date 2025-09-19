@@ -26,11 +26,14 @@ function Demo({ posts }: { posts: PaginatedPosts }) {
           </div>
         ))}
       </div>
-      <div>
+      <div className="py-12 px-4">
         {posts.links.map(link => (
-          <div>
+          <div key={link.label}>
             {link.url ? (
-              <a href={link.url} >{link.label}</a>
+              <Link
+                href={link.url}
+                dangerouslySetInnerHTML={{ __html: link.label }}
+              />
             ) : (
               <span>{link.label}</span>
             )
