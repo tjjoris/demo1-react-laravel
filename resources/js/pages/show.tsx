@@ -1,19 +1,27 @@
 import { Post } from "../types/post";
 import { useForm } from '@inertiajs/react';
+import { useRoute } from "../../../vendor/tightenco/ziggy"
 
 
 export default function Show({ post }: { post: Post }) {
     //delete is a reserved keyword in typescript so i cannot use it direclty and need to rename it during destructuring
     //renaming it to destroy
     const { delete: destroy } = useForm();
+    const route = useRoute();
 
     function deleteInShow(e: React.FormEvent) {
         e.preventDefault();
-        destroy(`/posts/${post.id}`);
+        //the manual route:
+        // destroy(`/posts/${post.id}`);
+        destroy(route('posts.destroy', { post: post.id }));
     }
 
     return (
         <>
+            <h1 className="text-3xl font-bold text-center my-8">
+                Show Post
+            </h1>
+            {/* <div className="w-1/2 mx-auto"> */}
             <div className="p-4 border-b">
                 <div className="text-sm text-slate-600">
                     <span>

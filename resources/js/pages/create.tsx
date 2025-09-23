@@ -20,10 +20,9 @@ export default function Create() {
 
     return (
         <>
-            <h1>
-                Create page
+            <h1 className="text-3xl font-bold text-center my-8">
+                Create Post
             </h1>
-            {data.body}
             <div className="w-1/2 mx-auto">
                 <form onSubmit={submit}>
                     <textarea
