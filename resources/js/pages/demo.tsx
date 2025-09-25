@@ -17,6 +17,8 @@ function Demo({ posts }: { posts: PaginatedPosts }) {
   // console.log(posts);
   return (
     <div>
+
+      <Hello name="Luke" />
       <div>
         {posts.data.map(post => (
           <div key={post.id} className="p-4 border-b">
@@ -57,7 +59,6 @@ function Demo({ posts }: { posts: PaginatedPosts }) {
           )
         ))}
       </div>
-      <Hello name="Luke" />
 
       <Link preserveScroll href="hello" className="block title mt-[1000px]">{new Date().toLocaleTimeString()}
       </Link>
