@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div>
             <header>
                 <nav>
-                    <Link className="nav-link" href="/">demo</Link>
+                    <Link className="nav-link" href="/">posts</Link>
                     <Link className="nav-link" href="/posts/create">Create</Link>
                 </nav>
             </header>
