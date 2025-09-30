@@ -1,6 +1,12 @@
-#Demo1 Laravel React
+# Demo1 Laravel React
 
-##Description
-This is a simple demo of using Laravel for front end to perform CRUD operations on MySQL, and React for front end. It was especially important as a practice in how to deploy a Laravel app onto a shared-hosting web server.
+## Frameworks and Tools used
+- Laravel: back end
+- React: front end
+- MySQL: database.
 
+## Description
+A simple demo to practice full stack development and deployment. This web app currently allows anyone to make and delete any post, and view all posts.
+
+## Link
 To use the deployed web app, visit [https://demo1.luke-j.com](https://demo1.luke-j.com)
