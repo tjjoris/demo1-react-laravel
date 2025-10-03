@@ -5,7 +5,7 @@ import path from 'path';
 export default defineConfig({
     plugins: [react()],
     build: {
-        outDir: 'public/build',
+        outDir: path.resolve(__dirname, 'public/build'), // <-- change here
         emptyOutDir: true,
     },
     root: 'resources/js', // Set your React app root
