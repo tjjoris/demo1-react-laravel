@@ -5,30 +5,39 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 import { initializeTheme } from './hooks/use-appearance';
 import Layout from '@/layouts/layout';
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+// const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
+import Blank from './pages/blank';
+import ReactDOM from 'react-dom/client';
+import React from 'react';
 
-createInertiaApp({
-    title: (title) => title ? `${title} - ${appName}` : appName,
-    // resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
-    resolve: (name) => {
-        const pages = import.meta.glob("./pages/**/*.tsx", { eager: true });
-        //note template strings require backticks not single quotes.
-        let page = pages[`./pages/${name}.tsx`] as any;
-        page.default.layout =
-            page.default.layout || ((page: React.ReactNode) => <Layout children={page} />);
-        return page;
-    },
-    setup({ el, App, props }) {
-        const root = createRoot(el);
+ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+        <Blank />
+    </React.StrictMode>
+);
 
-        root.render(<App {...props} />);
-    },
-    progress: {
-        color: '#fff',
-        showSpinner: true,
-    },
-});
+// createInertiaApp({
+//     title: (title) => title ? `${title} - ${appName}` : appName,
+//     // resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
+//     resolve: (name) => {
+//         const pages = import.meta.glob("./pages/**/*.tsx", { eager: true });
+//         //note template strings require backticks not single quotes.
+//         let page = pages[`./pages/${name}.tsx`] as any;
+//         page.default.layout =
+//             page.default.layout || ((page: React.ReactNode) => <Layout children={page} />);
+//         return page;
+//     },
+//     setup({ el, App, props }) {
+//         const root = createRoot(el);
 
-// This will set light / dark mode on load...
-initializeTheme();
+//         root.render(<App {...props} />);
+//     },
+//     progress: {
+//         color: '#fff',
+//         showSpinner: true,
+//     },
+// });
+
+// // This will set light / dark mode on load...
+// initializeTheme();
