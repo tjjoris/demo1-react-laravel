@@ -29,6 +29,9 @@
         "typescript-language-server": "^4.4.0"
     },
     "dependencies": {
+        "@capacitor/android": "^7.4.3",
+        "@capacitor/core": "^7.4.3",
+        "@capacitor/ios": "^7.4.3",
         "@headlessui/react": "^2.2.0",
         "@inertiajs/react": "^2.1.0",
         "@radix-ui/react-avatar": "^1.1.3",
