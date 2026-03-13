@@ -32,7 +32,7 @@ export default function Show({ post }: { post: Post }) {
                 <div>
                     by:
                     <span>
-                        TODO add user here
+                        {post.user?.name}
                     </span>
                 </div>
                 <p className="font-medium">{post.body}</p>
