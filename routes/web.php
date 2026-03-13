@@ -7,23 +7,28 @@ use App\Http\Controllers\PostController;
 //home page route handled by the index method of PostController
 Route::get('/', [PostController::class, 'index']);
 
-//creates a set of RESTful routes for the posts resource handled by PostCointroller 
-//except the index method
-Route::resource('posts', PostController::class)->except('index');
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
+    Route::get('posts/create', [PostController::class, 'create']);
 });
 
+
+//creates a set of RESTful routes for the posts resource handled by PostCointroller 
+//except the index method
+Route::resource('posts', PostController::class)->except('index', 'create');
+
+
 Route::get('demo', function () {
-    sleep(2);
+    // sleep(2);
     return Inertia::render('demo');
 });
 
 Route::get('home', function () {
-    sleep(2);
+    // sleep(2);
     return Inertia::render('home');
 });
 
