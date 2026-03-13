@@ -29,6 +29,12 @@ export default function Show({ post }: { post: Post }) {
                     </span>
                     <span>{new Date(post.created_at).toLocaleTimeString()}</span>
                 </div>
+                <div>
+                    by:
+                    <span>
+                        TODO add user here
+                    </span>
+                </div>
                 <p className="font-medium">{post.body}</p>
                 <div className="flex items-center justify-end gap-2">
                     <form onSubmit={deleteInShow}>
