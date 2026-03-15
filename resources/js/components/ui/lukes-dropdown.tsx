@@ -1,13 +1,27 @@
 import React from "react"
-import { FaChevronDown } from "react-icons/fa";
+import { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 //import the css from lukes-dropdown
 import "./lukes-dropdown.css";
 
 const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.ReactNode }) => {
+
+    const [open, setOpen] = useState(false);
+    const toggleDropDown = () => {
+        setOpen((open) => !open);
+
+    }
+
     return (
         <div className="dropdown">
-            <DropdownButton children={buttonText} />
-            <DropdownContent children={content} />
+            <DropdownButton
+                toggle={toggleDropDown}
+                open={open}>
+                {buttonText}
+            </DropdownButton>
+            <DropdownContent>{content}
+
+            </DropdownContent>
         </div>
     )
 }
@@ -27,12 +41,16 @@ const DropdownItem = () => {
     )
 }
 
-const DropdownButton = ({ children }: { children: React.ReactNode }) => {
+const DropdownButton = ({ children, open, toggle }: { children: React.ReactNode, open: boolean, toggle: () => void }) => {
     return (
-        <div className='dropdown-btn'>
+        <div
+            onClick={toggle}
+            className={`dropdown-btn ${open ? "button-open" : null}`}>
             {children}
             <span className='toggle-icon'>
-                <FaChevronDown />
+                {open ? <FaChevronDown /> :
+                    <FaChevronUp />
+                }
             </span>
         </div>
     )
