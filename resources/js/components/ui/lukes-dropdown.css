@@ -14,6 +14,10 @@
     cursor: pointer;
 }
 
+.button-open {
+    border: rgb(147, 197, 255) 0.5 solid;
+}
+
 .toggle-icon {
     display: flex;
     align-items: center;
@@ -37,6 +41,11 @@
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    opacity: 0;
+}
+
+.content-open {
+    opacity: 1;
 }
 
 .dropdown-content::-webkit-scrollbar {

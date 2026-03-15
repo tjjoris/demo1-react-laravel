@@ -19,18 +19,19 @@ const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.
                 open={open}>
                 {buttonText}
             </DropdownButton>
-            <DropdownContent>{content}
+            <DropdownContent open={open}
+            >{content}
 
             </DropdownContent>
         </div>
     )
 }
 
-const DropdownContent = ({ children }: { children: React.ReactNode }) => {
+const DropdownContent = ({ children, open }: { children: React.ReactNode, open: boolean }) => {
     return (
-        <div className='dropdown-content'>
+        <div className={`dropdown-content ${open ? "content-open" : null}`}>
             {children}
-        </div>
+        </div >
     )
 }
 
