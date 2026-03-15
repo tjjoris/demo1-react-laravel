@@ -1,12 +1,14 @@
 import { Post } from "../types/post";
-import { useForm } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 import { useRoute } from "../../../vendor/tightenco/ziggy"
+// import { SharedData } from "../types";
 
 
-export default function Show({ post }: { post: Post }) {
+export default function Show({ post, isDeleteAllowed }: { post: Post, isDeleteAllowed: boolean }) {
     //delete is a reserved keyword in typescript so i cannot use it direclty and need to rename it during destructuring
     //renaming it to destroy
     const { delete: destroy } = useForm();
+    // const { auth } = usePage<SharedData>().props;
     const route = useRoute();
 
     function deleteInShow(e: React.FormEvent) {
@@ -37,11 +39,13 @@ export default function Show({ post }: { post: Post }) {
                 </div>
                 <p className="font-medium">{post.body}</p>
                 <div className="flex items-center justify-end gap-2">
-                    <form onSubmit={deleteInShow}>
-                        <button className="bg-red-500 rounded-md text-sm px-4 py=1 text-white">
-                            Delete
-                        </button>
-                    </form>
+                    {isDeleteAllowed && (
+                        <form onSubmit={deleteInShow}>
+                            <button className="bg-red-500 rounded-md text-sm px-4 py-1 text-white">
+                                Delete
+                            </button>
+                        </form>
+                    )}
                 </div>
             </div>
         </>

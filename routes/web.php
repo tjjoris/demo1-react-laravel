@@ -23,12 +23,10 @@ Route::resource('posts', PostController::class)->except('index', 'create');
 
 
 Route::get('demo', function () {
-    // sleep(2);
     return Inertia::render('demo');
 });
 
 Route::get('home', function () {
-    // sleep(2);
     return Inertia::render('home');
 });
 
@@ -37,7 +35,6 @@ Route::get('wave', function () {
 })->name('wave');
 
 Route::get('salute', function () {
-    sleep(2);
     return Inertia::render('salute', ['name'=>'Sam']);
 })->name('salute');
 
