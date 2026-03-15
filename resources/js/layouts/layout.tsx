@@ -1,5 +1,6 @@
+import { NavUserInHeader } from "@/components/nav-user-in-header";
+import { Dropdown } from "@/components/ui/lukes-dropdown";
 import { Link } from "@inertiajs/react";
-//using Link instead of anchor tag so server does not need to reload the page.
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
@@ -7,6 +8,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div>
             <header>
                 <nav>
+                    <Dropdown
+                        buttonText='lukes dropdown'
+                        content={<p>hello world</p>}
+                    />
                     <Link className="nav-link" href="/">posts</Link>
                     <Link className="nav-link" href="/posts/create">Create</Link>
                 </nav>
