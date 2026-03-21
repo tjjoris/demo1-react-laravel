@@ -1,5 +1,5 @@
 import React from "react"
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 //import the css from lukes-dropdown
 import "./lukes-dropdown.css";
@@ -7,13 +7,33 @@ import "./lukes-dropdown.css";
 const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.ReactNode }) => {
 
     const [open, setOpen] = useState(false);
+
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
     const toggleDropDown = () => {
         setOpen((open) => !open);
 
     }
 
+    useEffect(() => {
+        const handler = (event: Event) => {
+            if (
+                event.target instanceof Node &&
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener("click", handler);
+
+        return () => {
+            document.removeEventListener("click", handler);
+        };
+    }, [dropdownRef]);
+
     return (
-        <div className="dropdown">
+        <div className="dropdown" ref={dropdownRef}>
             <DropdownButton
                 toggle={toggleDropDown}
                 open={open}>
