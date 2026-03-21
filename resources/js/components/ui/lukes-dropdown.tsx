@@ -21,25 +21,25 @@ const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.
     /**
      * the listener to listen for pointer clicks, so when the pointer clicks outside the dropdown, it closes the dropdown.
      */
-    useEffect(() => {
-        const handler = (event: Event) => {
-            if (
-                event.target instanceof Node &&
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target)
-            ) {
-                setOpen(false);
-            }
-        };
+    // useEffect(() => {
+    //     const handler = (event: Event) => {
+    //         if (
+    //             event.target instanceof Node &&
+    //             dropdownRef.current &&
+    //             !dropdownRef.current.contains(event.target)
+    //         ) {
+    //             setOpen(false);
+    //         }
+    //     };
 
-        document.addEventListener("pointerup",
-            handler);
+    //     document.addEventListener("pointerup",
+    //         handler);
 
-        return () => {
-            document.removeEventListener
-                ("pointerup", handler);
-        };
-    }, [dropdownRef]);
+    //     return () => {
+    //         document.removeEventListener
+    //             ("pointerup", handler);
+    //     };
+    // }, [dropdownRef]);
 
     return (
         <div className="dropdown" ref={dropdownRef}>
@@ -64,10 +64,11 @@ const DropdownContent = ({ children, open }: { children: React.ReactNode, open: 
     )
 }
 
-const DropdownItem = ({ children, onClick }: { children: React.ReactNode, onClick: () => void }) => {
+const DropdownItem = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className='dropdown-item'
-            onClick={onClick}>
+        // onClick={onClick}
+        >
             {children}
         </div>
     )
