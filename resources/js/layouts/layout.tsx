@@ -52,10 +52,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
                         </div>
                         :
-                        <Link className="block w-full" href={login()} as="button">
-                            <LogIn className="mr-2" />
-                            Log out
-                        </Link>
+                        <div>
+                            <Link className="block w-full" href={login()} as="button">
+                                <LogIn className="mr-2" />
+                            </Link>
+                        </div>
                     }
                     <Link className="nav-link" href="/">posts</Link>
                     <Link className="nav-link" href="/posts/create">Create</Link>
