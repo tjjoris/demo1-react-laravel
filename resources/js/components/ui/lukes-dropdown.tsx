@@ -21,25 +21,25 @@ const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.
     /**
      * the listener to listen for pointer clicks, so when the pointer clicks outside the dropdown, it closes the dropdown.
      */
-    useEffect(() => {
-        const handler = (event: Event) => {
-            if (
-                event.target instanceof Node &&
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target)
-            ) {
-                setOpen(false);
-            }
-        };
+    // useEffect(() => {
+    //     const handler = (event: Event) => {
+    //         if (
+    //             event.target instanceof Node &&
+    //             dropdownRef.current &&
+    //             !dropdownRef.current.contains(event.target)
+    //         ) {
+    //             setOpen(false);
+    //         }
+    //     };
 
-        document.addEventListener("click",
-            handler);
+    //     document.addEventListener("pointerup",
+    //         handler);
 
-        return () => {
-            document.removeEventListener
-                ("click", handler);
-        };
-    }, [dropdownRef]);
+    //     return () => {
+    //         document.removeEventListener
+    //             ("pointerup", handler);
+    //     };
+    // }, [dropdownRef]);
 
     return (
         <div className="dropdown" ref={dropdownRef}>
@@ -58,7 +58,7 @@ const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.
 
 const DropdownContent = ({ children, open }: { children: React.ReactNode, open: boolean }) => {
     return (
-        <div className={`dropdown-content ${open ? "content-open" : null}`}>
+        <div className={`dropdown-content ${open ? "content-open" : ""}`} style={{ zIndex: 999 }}>
             {children}
         </div >
     )
@@ -93,7 +93,7 @@ const DropdownButton = ({ children, open, toggle }: { children: React.ReactNode,
             onPointerUp={handleClick}
             className={`dropdown-btn ${open ? "button-open" : ""}`}>
             <span className="dropdown-button-label">{children}</span>
-            <span className='toggle-icon' onClick={handleClick}>
+            <span className='toggle-icon' onPointerUp={handleClick}>
                 {open ? <FaChevronUp /> : <FaChevronDown />}
             </span>
         </button>
