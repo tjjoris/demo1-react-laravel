@@ -14,6 +14,9 @@ const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.
 
     }
 
+    /**
+     * the listener to listen for clicks, so when the user clicks outside the dropdown, it closes the dropdown.
+     */
     useEffect(() => {
         const handler = (event: Event) => {
             if (
@@ -66,6 +69,13 @@ const DropdownItem = ({ children, onClick }: { children: React.ReactNode, onClic
     )
 }
 
+/**
+ * this is a button. on pointer (mouse and touch) it calls handleClick, which stops event propagation so it 
+ * only handles the click once.
+ * 
+ * @param param0 
+ * @returns 
+ */
 const DropdownButton = ({ children, open, toggle }: { children: React.ReactNode, open: boolean, toggle: () => void }) => {
     const handleClick = (event: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>) => {
         event.stopPropagation();
@@ -75,10 +85,10 @@ const DropdownButton = ({ children, open, toggle }: { children: React.ReactNode,
     return (
         <button
             type="button"
-            onClick={handleClick}
+            onPointerUp={handleClick}
             className={`dropdown-btn ${open ? "button-open" : ""}`}>
             <span className="dropdown-button-label">{children}</span>
-            <span className='toggle-icon' onPointerDown={handleClick}>
+            <span className='toggle-icon' onPointerUp={handleClick}>
                 {open ? <FaChevronUp /> : <FaChevronDown />}
             </span>
         </button>
