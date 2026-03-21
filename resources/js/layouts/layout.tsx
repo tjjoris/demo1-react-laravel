@@ -6,7 +6,7 @@ import { Link, usePage, router } from "@inertiajs/react";
 import { LogIn, LogOut, Settings } from 'lucide-react';
 // import { usePage } from '@inertiajs/react';
 import { type SharedData } from '@/types';
-import { logout } from '@/routes';
+import { logout, login } from '@/routes';
 import { edit } from '@/routes/profile';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 
@@ -52,7 +52,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
                         </div>
                         :
-                        <LogIn />
+                        <Link className="block w-full" href={login()} as="button">
+                            <LogIn className="mr-2" />
+                            Log out
+                        </Link>
                     }
                     <Link className="nav-link" href="/">posts</Link>
                     <Link className="nav-link" href="/posts/create">Create</Link>
