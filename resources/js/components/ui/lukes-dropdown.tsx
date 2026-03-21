@@ -35,10 +35,12 @@ const DropdownContent = ({ children, open }: { children: React.ReactNode, open: 
     )
 }
 
-const DropdownItem = () => {
+const DropdownItem = ({ children, onClick }: { children: React.ReactNode, onClick: () => void }) => {
     return (
-        <div className='nav-link'>
-            DropdownItem</div>
+        <div className='dropdown-item'
+            onClick={onClick}>
+            {children}
+        </div>
     )
 }
 
