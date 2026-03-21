@@ -67,17 +67,21 @@ const DropdownItem = ({ children, onClick }: { children: React.ReactNode, onClic
 }
 
 const DropdownButton = ({ children, open, toggle }: { children: React.ReactNode, open: boolean, toggle: () => void }) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>) => {
+        event.stopPropagation();
+        toggle();
+    };
+
     return (
-        <div
-            onClick={toggle}
-            className={`dropdown-btn ${open ? "button-open" : null}`}>
-            {children}
-            <span className='toggle-icon'>
-                {open ? <FaChevronDown /> :
-                    <FaChevronUp />
-                }
+        <button
+            type="button"
+            onClick={handleClick}
+            className={`dropdown-btn ${open ? "button-open" : ""}`}>
+            <span className="dropdown-button-label">{children}</span>
+            <span className='toggle-icon' onPointerDown={handleClick}>
+                {open ? <FaChevronUp /> : <FaChevronDown />}
             </span>
-        </div>
+        </button>
     )
 }
 
