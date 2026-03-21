@@ -25,10 +25,12 @@ const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.
             }
         };
 
-        document.addEventListener("click", handler);
+        document.addEventListener("click",
+            handler);
 
         return () => {
-            document.removeEventListener("click", handler);
+            document.removeEventListener
+                ("click", handler);
         };
     }, [dropdownRef]);
 
