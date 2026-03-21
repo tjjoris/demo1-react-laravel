@@ -8,6 +8,10 @@ const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.
 
     const [open, setOpen] = useState(false);
 
+    /**
+     * use ref does not trigger re-render. It stores a value to be used for the dropdown
+     * event handler for clicking outside the dropdown.
+     */
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const toggleDropDown = () => {
         setOpen((open) => !open);
@@ -15,7 +19,7 @@ const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.
     }
 
     /**
-     * the listener to listen for clicks, so when the user clicks outside the dropdown, it closes the dropdown.
+     * the listener to listen for pointer clicks, so when the pointer clicks outside the dropdown, it closes the dropdown.
      */
     useEffect(() => {
         const handler = (event: Event) => {
@@ -28,12 +32,12 @@ const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.
             }
         };
 
-        document.addEventListener("click",
+        document.addEventListener("pointerup",
             handler);
 
         return () => {
             document.removeEventListener
-                ("click", handler);
+                ("pointerup", handler);
         };
     }, [dropdownRef]);
 

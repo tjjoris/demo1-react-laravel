@@ -1,9 +1,16 @@
+import Hello from "@/components/hello";
 import { NavUserInHeader } from "@/components/nav-user-in-header";
 import { Dropdown, DropdownItem } from "@/components/ui/lukes-dropdown";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
+// import { SharedData } from "@/types";
+import { LogOut, Settings } from 'lucide-react';
+// import { usePage } from '@inertiajs/react';
+import { type SharedData } from '@/types';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    const items = [1, 2, 3, 4, 5, 6, 7, 9];
+    const items = [<Settings />, <LogOut />];
+    const { auth } = usePage<SharedData>().props;
+
 
     const doStuff = () => { };
     return (
@@ -11,13 +18,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <header>
                 <nav>
                     <Dropdown
-                        buttonText='lukes dropdown'
+                        buttonText={auth.user?.name || "Anonymous"}
                         content={<>
                             {
-                                items.map(item => <DropdownItem
+                                items.map((item, index) => <DropdownItem
                                     onClick={doStuff}
-                                    key={item}>
-                                    {`Item ${item}`}
+                                    key={index}>
+                                    {item}
                                 </DropdownItem>)
                             }</>}
                     />
