@@ -1,0 +1,5 @@
+{
+	"appId": "com.example.app",
+	"appName": "demo1",
+	"webDir": "public/build"
+}

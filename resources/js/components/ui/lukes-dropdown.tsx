@@ -1,0 +1,103 @@
+import React from "react"
+import { useState, useEffect, useRef } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+//import the css from lukes-dropdown
+import "./lukes-dropdown.css";
+
+const Dropdown = ({ buttonText, content }: { buttonText: string, content: React.ReactNode }) => {
+
+    const [open, setOpen] = useState(false);
+
+    /**
+     * use ref does not trigger re-render. It stores a value to be used for the dropdown
+     * event handler for clicking outside the dropdown.
+     */
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+    const toggleDropDown = () => {
+        setOpen((open) => !open);
+
+    }
+
+    /**
+     * the listener to listen for pointer clicks, so when the pointer clicks outside the dropdown, it closes the dropdown.
+     */
+    useEffect(() => {
+        const handler = (event: Event) => {
+            if (
+                event.target instanceof Node &&
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener("pointerup",
+            handler);
+
+        return () => {
+            document.removeEventListener
+                ("pointerup", handler);
+        };
+    }, [dropdownRef]);
+
+    return (
+        <div className="dropdown" ref={dropdownRef}>
+            <DropdownButton
+                toggle={toggleDropDown}
+                open={open}>
+                {buttonText}
+            </DropdownButton>
+            <DropdownContent open={open}
+            >{content}
+
+            </DropdownContent>
+        </div>
+    )
+}
+
+const DropdownContent = ({ children, open }: { children: React.ReactNode, open: boolean }) => {
+    return (
+        <div className={`dropdown-content ${open ? "content-open" : ""}`} style={{ zIndex: 999 }}>
+            {children}
+        </div >
+    )
+}
+
+const DropdownItem = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <div className='dropdown-item'
+        // onClick={onClick}
+        >
+            {children}
+        </div>
+    )
+}
+
+/**
+ * this is a button. on pointer (mouse and touch) it calls handleClick, which stops event propagation so it 
+ * only handles the click once.
+ * 
+ * @param param0 
+ * @returns 
+ */
+const DropdownButton = ({ children, open, toggle }: { children: React.ReactNode, open: boolean, toggle: () => void }) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>) => {
+        event.stopPropagation();
+        toggle();
+    };
+
+    return (
+        <button
+            type="button"
+            onPointerUp={handleClick}
+            className={`dropdown-btn ${open ? "button-open" : ""}`}>
+            <span className="dropdown-button-label">{children}</span>
+            <span className='toggle-icon' onPointerUp={handleClick}>
+                {open ? <FaChevronUp /> : <FaChevronDown />}
+            </span>
+        </button>
+    )
+}
+
+export { Dropdown, DropdownContent as DropdownContext, DropdownItem };

@@ -9,8 +9,12 @@
 export interface Post {
     id: number;
     body: string;
+    user_id: number;
     created_at: string;
     updated_at: string;
+    user?: {
+        name: string;
+    };
 }
 
 export interface Link {
